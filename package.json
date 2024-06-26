@@ -17,9 +17,13 @@
     "migrate:generate": "drizzle-kit generate --config=drizzle.config.ts",
     "migrate:drop": "drizzle-kit drop --config=drizzle.config.ts",
     "db:check": "drizzle-kit check --config=drizzle.config.ts",
-    "db:push": "drizzle-kit push --config=drizzle.config.ts"
+    "db:push": "drizzle-kit push --config=drizzle.config.ts",
+    "gql:codegen": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/graphql-modules-preset": "^4.0.7",
+    "@graphql-codegen/typescript-resolvers": "^4.1.0",
     "@types/body-parser": "^1.19.5",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
@@ -40,6 +44,8 @@
   "dependencies": {
     "@apollo/server": "^4.10.4",
     "@aws-sdk/client-ssm": "^3.540.0",
+    "@graphql-tools/graphql-file-loader": "^8.0.1",
+    "@graphql-tools/load": "^8.0.2",
     "@graphql-tools/schema": "^10.0.4",
     "axios": "^1.6.8",
     "compression": "^1.7.4",

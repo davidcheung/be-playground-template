@@ -1,28 +1,16 @@
-import { mergeSchemas } from '@graphql-tools/schema';
-import { GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { mergeSchemas } from "@graphql-tools/schema";
 
-import { entities } from './common';
-import { customSchema } from './custom';
-import UserSchema from './models/users';
+import UserSchema from "./modules/users/users";
 
-const ModelSchema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'Query',
-    fields: {
-      ...UserSchema.query,
-    },
-  }),
-  // Same rules apply to mutations
-  mutation: new GraphQLObjectType({
-    name: 'Mutation',
-    fields: {
-      ...UserSchema.mutation,
-    },
-  }),
-  // In case you need types inside your schema
-  types: [...Object.values(entities.types), ...Object.values(entities.inputs)],
-});
+const models = [UserSchema];
 
-export const schema = mergeSchemas({
-  schemas: [ModelSchema, customSchema],
-});
+const definition = models.reduce(
+  (acc, model) => {
+    acc.typeDefs = acc.typeDefs.concat(model.typeDefs);
+    acc.resolvers = acc.resolvers.concat(model.resolvers);
+    return acc;
+  },
+  { typeDefs: [], resolvers: [] }
+);
+
+export const schema = mergeSchemas(definition);

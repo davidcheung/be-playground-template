@@ -2,7 +2,7 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Router } from 'express';
-import path from 'path';
+// import path from 'path';
 
 import { useApollo } from './gql';
 
@@ -14,7 +14,7 @@ export default async function app(routes: Router) {
   app.use(cors());
   app.use(compression());
   // app.use(morgan('combined', { stream: winston.stream }));
-  app.use(express.static(path.join(__dirname, 'public')));
+  // app.use(express.static(path.join(__dirname, 'public')));
 
   // XXX(Phong): if you're doing any type of proxying or routing, you should
   // comment this out because it will destroy the buffer stream for the body
