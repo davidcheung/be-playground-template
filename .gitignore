@@ -24,3 +24,6 @@ node_modules
 .env*
 # except the example file
 !.env.example
+
+# Graphql codegen
+gql/modules/generated-types/*

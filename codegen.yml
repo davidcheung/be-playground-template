@@ -1,0 +1,21 @@
+overwrite: true
+emitLegacyCommonJSImports: false
+
+generates:
+  ./src/gql/modules/:
+    schema: './src/gql/modules/**/*.graphql'
+
+    presetConfig:
+      baseTypesPath: ./generated-types/index.ts  # Where to create the complete schema types
+      encapsulateModuleTypes: none
+      useGraphQLModules: false
+    plugins:
+      - typescript
+      - typescript-resolvers
+config:
+  maybeValue: "T | undefined"
+  useIndexSignature: true
+  mapperTypeSuffix: Model
+  contextType: ../#GraphQLRequestContext
+  mappers:
+    User: ../../../db/schema#User
